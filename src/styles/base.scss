@@ -1,0 +1,365 @@
+@import "./variables";
+
+page{
+  background-color: #F5F5F5;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+.container{
+  // @include wh(100%,100%);
+  width: 750rpx;
+  min-height: 100%;
+  -webkit-overflow-scrolling:touch;
+}
+
+//******通用样式******/
+text, view {
+  font-family: MicroSoft Yahei;
+  /*font-size: $text-nm;
+  color: $dark;*/
+}
+text, view ,block,icon,scroll-view,swiper,rich-text,button,input,textarea,label,form,checkbox,navigator,image{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.form {
+  text,view{
+    font-family: 宋体;
+    font-size: $--text-form;
+  }
+}
+
+button[type="primary"]{
+  background-color: $--color-primary;
+}
+button.pain-btn[open-type="share"]{
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
+}
+button{
+  margin:0;
+}
+.weui-btn.mini-btn{
+  margin-top: 0;
+}
+button.pain-btn[open-type="share"]::after {
+  border:none;
+}
+button[plain]{
+  border:none;
+}
+i{
+  display: inline-block;
+  color: #999999;
+}
+
+//******布局样式******/
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.row-center{
+  @extend .row;
+  justify-content: center;
+}
+.row-between {
+  @extend .row;
+  justify-content: space-between;
+}
+.row-around {
+  @extend .row;
+  justify-content: space-around;
+}
+.row-end {
+  @extend .row;
+  justify-content: flex-end;
+}
+.column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.column-center{
+  @extend .column;
+  align-items: center;
+}
+.column-around{
+  @extend .column;
+  align-items: center;
+  justify-content: space-around;
+}
+.column-between{
+  @extend .column;
+  align-items: center;
+  justify-content: space-between;
+}
+.fixed-bottom{
+  position: fixed;
+  bottom: 0;
+}
+
+//******常用******/
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.margin {
+  margin: 0 auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+//单行省略号
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+//双行省略号
+.ellipsis2{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.checkbox{
+  display: inline-block;
+  white-space:nowrap;
+  position: relative;
+  color: #666;
+  font-size:$--text-nm;
+  padding-left:90rpx;
+  checkbox{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height:100%;
+    z-index:2;
+    opacity:0;
+  }
+  &:before{
+    content: '';
+    width: 44rpx;
+    height:44rpx;
+    border: 2rpx solid #999;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 50%;
+    position: absolute;
+    left:0;
+    top:50%;
+    margin-top:-22rpx;
+  }
+  &.checked:before{
+    background-color: $--color-primary;
+    border-color: $--color-primary;
+  }
+  &.checked:after{
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 18rpx;
+    width: 14rpx;
+    height: 24rpx;
+    margin-top: -14rpx;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border: 4rpx solid #fff;
+    border-top: 0;
+    border-left: 0;
+  }
+}
+
+//form表单
+.table-item{
+  font-size: $--text-xxl;
+  @include fj(flex-start);
+  @include mb1;
+  height: 113rpx;
+  .row-title{
+    width: 116rpx;
+  }
+  .row-input{
+    width: 445rpx;
+    input{
+      width: 445rpx;
+      height: 54rpx;
+      line-height: 54rpx;
+    }
+    &.row-input-short{
+      width: 360rpx;
+      input{
+        width: 360rpx;
+      }
+    }
+    &.row-input-shortest{
+      width: 110rpx;
+      input{
+        width: 110rpx;
+      }
+    }
+  }
+  .minus{
+    width: 100rpx;
+    text-align: center;
+    color: #999999;
+  }
+  .row-radio{
+    @include fj(flex-end);
+    @include wh(140rpx,110rpx);
+    span{
+      margin-left: 29rpx;
+    }
+  }
+  .row-tail{
+    @include fj(flex-end);
+    width: 140rpx;
+    height: 100rpx;
+    span{
+      margin-left: 29rpx;
+    }
+  }
+  &:last-child{
+    border-bottom: 0;
+  }
+}
+//滚动条隐藏
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+  }
+
+  .table-cells{
+    background: $--color-white;
+    border-top: 1rpx solid $--color-light;
+    margin-bottom: 20rpx;
+    padding: 0 30rpx;
+    @include sc($--text-xxl,$--color-dark);
+    .table-cell{
+      @include wh(690rpx,112rpx);
+      @include mb1;
+      @include fj(flex-start);
+      position: relative;
+      &:last-child{
+        border-bottom: 0;
+      }
+      &.table-cell-notlast{
+        @include mb1;
+      }
+      &.table-cell-textarea{
+        height: 312rpx;
+        align-items: flex-start;
+        padding: 30rpx 0;
+        textarea{
+          @include wh(500rpx,252rpx);
+        }
+      }
+      .table-cell-hd{
+        width: 170rpx;
+      }
+      .table-cell-bd{
+        width: 490rpx;
+        @include fj;
+        input{
+          width: 490rpx;
+          &.short{
+            width: 322rpx;
+          }
+          &.shortest{
+            width: 140rpx;
+            text-align: center;
+          }
+        }
+        .link{
+          color: #999999;
+        }
+        &.long{
+          width: 520rpx;
+          input{
+            width: 520rpx;
+            &.short{
+              width: 352rpx;
+            }
+          }
+        }
+      }
+      .radio{
+        padding: 0 20rpx;
+        font-size: $--text-xxl;
+      }
+    }
+    &.table-cells-top{
+      border-top: 0;
+    }
+  }
+  
+  .bottom-btn{
+    @include wh(750rpx,128rpx);
+    background: $--color-white;
+    border-top: 1rpx solid $--color-light;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    .btn-new{
+      @include wh(690rpx,88rpx);
+      @include sc($--text-xxxl,$--color-white);
+      @include btng;
+      line-height: 88rpx;
+      margin: 20rpx auto;
+    }
+  }
+  .placeholder{
+    @include sc($--text-sm,$--color-white);
+  }
+
+
+  //部分字体图标既定颜色
+  .icon-fenmulianying1,.icon-fangxingxuanzhongfill,.icon-yuanxingxuanzhongfill,.icon-danxuanfill,.icon-weixin{
+    color: $--color-green;
+  }
+  .icon-xiangxia2{
+    color: $--color-white;
+  }
+  .color-danger,.icon-shoucang-mian,.icon-guanzhu{
+    color: $--color-danger;
+  }
+  .color-secondary,.icon-dianzanmian{
+    color: $--color-secondary;
+  }
+  .icon-sousuo{
+    color: #cccccc;
+  }
+  .icon-gerenshangjia{
+    color: $--color-green;
+    font-size: 40rpx;
+  }
+  .icon-qiyeshangjia{
+    color: $--color-secondary;
+  }
